@@ -1,12 +1,3 @@
-// class Todo {
-//   id: string;
-//   text: string;
-//   constructor(todoText: string) {
-//     this.text = todoText;
-//     this.id = Math.random().toString();
-//   }
-// }
-
 type Product = {
   id: number;
   title: string;
@@ -18,7 +9,6 @@ type Product = {
     rate: number;
     count: number;
   };
-  amount: number;
 };
 
 // export default Todo;
