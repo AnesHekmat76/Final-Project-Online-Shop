@@ -1,12 +1,12 @@
 import '../src/index.css';
 import Navigation from './components/layout/Navigation';
-import Main from './components/layout/Main';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   return (
     <div>
       <Navigation />
-      <Main />
+      <ProductsPage />
     </div>
   );
 }
