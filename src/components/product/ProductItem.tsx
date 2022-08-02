@@ -1,18 +1,6 @@
 import Button from '../UI/Button';
 import './ProductItem.css';
-
-type Product = {
-  id: number;
-  title: string;
-  price: string;
-  category: string;
-  description: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+import Product from '../../models/product';
 
 const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
   const { title, description, price, image } = props.product;

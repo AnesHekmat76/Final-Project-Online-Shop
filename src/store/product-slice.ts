@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Product from '../models/product';
-import productImg from '../assets/product.jpg';
 
 type ProductState = {
   fetchedProducts: Product[];
@@ -9,55 +8,19 @@ type ProductState = {
   filteredProductsBySearch: Product[];
   selectedCategory: string;
   searchedText: string;
+  fetchLoading: boolean;
+  productMessage: string;
 };
 
 const initialProductState: ProductState = {
-  fetchedProducts: [
-    {
-      id: 1,
-      title: 'title',
-      description:
-        'publishing and graphic design, Lorem ipsum is a placeholder text commonly used to Lorem ipsum may be used as a placeholder before final.',
-      price: '12',
-      category: 'car',
-      image: productImg,
-      rating: {
-        count: 1,
-        rate: 4
-      }
-    },
-    {
-      id: 2,
-      title: 'title',
-      description:
-        'publishing and graphic design, Lorem ipsum is a placeholder text commonly used to Lorem ipsum may be used as a placeholder before final.',
-      price: '12',
-      category: 'car',
-      image: productImg,
-      rating: {
-        count: 1,
-        rate: 4
-      }
-    },
-    {
-      id: 3,
-      title: 'title',
-      description:
-        'publishing and graphic design, Lorem ipsum is a placeholder text commonly used to Lorem ipsum may be used as a placeholder before final.',
-      price: '12',
-      category: 'car',
-      image: productImg,
-      rating: {
-        count: 1,
-        rate: 4
-      }
-    }
-  ],
+  fetchedProducts: [],
   fetchedCategories: [],
   filteredProductsByCategory: [],
   filteredProductsBySearch: [],
   selectedCategory: '',
-  searchedText: ''
+  searchedText: '',
+  fetchLoading: true,
+  productMessage: 'Loading...'
 };
 
 const productSlice = createSlice({
@@ -65,6 +28,10 @@ const productSlice = createSlice({
   initialState: initialProductState,
   reducers: {
     getFetchedProducts(state, action) {
+      if (action.payload.length === 0) {
+        state.productMessage = 'No product found';
+      }
+      state.productMessage = '';
       state.fetchedProducts = action.payload;
       state.filteredProductsByCategory = action.payload;
       state.filteredProductsBySearch = action.payload;
@@ -80,7 +47,8 @@ const productSlice = createSlice({
       });
       state.fetchedCategories = uniqueCategories;
     },
-    categorySelect(state, action) {
+    filterProductsByCategory(state, action) {
+      state.productMessage = '';
       if (state.searchedText !== '') state.searchedText = '';
       if (action.payload === 'all') {
         state.filteredProductsByCategory = state.fetchedProducts;
@@ -97,14 +65,16 @@ const productSlice = createSlice({
     },
     userSearch(state, action) {
       state.searchedText = action.payload;
-      // state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
-      //   return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
-      // });
     },
     filterProductsBySearch(state, action) {
+      state.productMessage = '';
       state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
         return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
       });
+      if (state.filteredProductsBySearch.length === 0) state.productMessage = 'No product found';
+    },
+    changeProductMessage(state, action) {
+      state.productMessage = action.payload;
     }
   }
 });

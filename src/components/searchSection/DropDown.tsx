@@ -9,7 +9,7 @@ const DropDown = () => {
   const dispatch = useDispatch();
   const dropDownValue = useSelector((state: RootState) => state.product.selectedCategory);
   const dropDownChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(productAction.categorySelect(event.target.value));
+    dispatch(productAction.filterProductsByCategory(event.target.value));
   };
   const fetchedCategories = useSelector((state: RootState) => state.product.fetchedCategories);
   const categoryOption = fetchedCategories.map((category, index) => {

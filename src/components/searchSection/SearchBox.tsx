@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect } from 'react';
 
+let isInitial = true;
 const SearchBox = () => {
   const dispatch = useDispatch();
   const searchInputValue = useSelector((state: RootState) => state.product.searchedText);
@@ -12,9 +13,13 @@ const SearchBox = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(productAction.filterProductsBySearch(searchInputValue));
-    }, 600);
+    let timer: any;
+    if (!isInitial) {
+      timer = setTimeout(() => {
+        dispatch(productAction.filterProductsBySearch(searchInputValue));
+      }, 600);
+    }
+    isInitial = false;
     return () => {
       if (timer) {
         clearTimeout(timer);

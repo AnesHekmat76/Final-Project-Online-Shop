@@ -1,10 +1,10 @@
 import ProductsList from '../components/product/ProductsList';
-import SearchPart from '../components/searchPart/SearchPart';
+import SearchSection from '../components/searchSection/SearchSection';
 
 const ProductsPage = () => {
   return (
     <>
-      <SearchPart />
+      <SearchSection />
       <ProductsList />
     </>
   );
