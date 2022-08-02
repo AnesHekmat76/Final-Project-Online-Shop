@@ -1,11 +1,26 @@
 import { useDispatch } from 'react-redux';
 import { productAction } from '../../store/product-slice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useEffect } from 'react';
 
 const SearchBox = () => {
   const dispatch = useDispatch();
+  const searchInputValue = useSelector((state: RootState) => state.product.searchedText);
   const inputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(productAction.userSearch(event.target.value));
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(productAction.filterProductsBySearch(searchInputValue));
+    }, 600);
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [searchInputValue, dispatch]);
 
   return (
     <div className="flex items-center sm:w-46/100 sm:mr-3 lg:mr-4">
@@ -32,6 +47,7 @@ const SearchBox = () => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 h-9 lg:text-base"
           required
           onChange={inputOnChangeHandler}
+          value={searchInputValue}
         />
       </div>
     </div>

@@ -81,6 +81,7 @@ const productSlice = createSlice({
       state.fetchedCategories = uniqueCategories;
     },
     categorySelect(state, action) {
+      if (state.searchedText !== '') state.searchedText = '';
       if (action.payload === 'all') {
         state.filteredProductsByCategory = state.fetchedProducts;
         state.filteredProductsBySearch = state.fetchedProducts;
@@ -96,6 +97,11 @@ const productSlice = createSlice({
     },
     userSearch(state, action) {
       state.searchedText = action.payload;
+      // state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
+      //   return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
+      // });
+    },
+    filterProductsBySearch(state, action) {
       state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
         return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
       });
