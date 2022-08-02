@@ -1,4 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { productAction } from '../../store/product-slice';
+
 const SearchBox = () => {
+  const dispatch = useDispatch();
+  const inputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(productAction.userSearch(event.target.value));
+  };
+
   return (
     <div className="flex items-center sm:w-46/100 sm:mr-3 lg:mr-4">
       <label htmlFor="simple-search" className="sr-only">
@@ -23,6 +31,7 @@ const SearchBox = () => {
           id="simple-search"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 h-9 lg:text-base"
           required
+          onChange={inputOnChangeHandler}
         />
       </div>
     </div>
