@@ -1,6 +1,7 @@
-const UserProfile = () => {
+import React from 'react';
+const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
   return (
-    <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms">
+    <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms w-32">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-10 w-10 text-gray-400"
@@ -12,7 +13,7 @@ const UserProfile = () => {
           clipRule="evenodd"
         />
       </svg>
-      <h4 className="ml-1 text-gray-900">Hi, Anes</h4>
+      <h4 className="ml-1 text-gray-900"> {userName ? `Hi, ${userName}` : ''}</h4>
     </div>
   );
 };
