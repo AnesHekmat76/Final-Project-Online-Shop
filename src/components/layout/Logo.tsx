@@ -1,8 +1,8 @@
 import LogoImage from '../../assets/Logo.png';
 const Logo = () => {
   return (
-    <div className="w-32 mt-1">
-      <img className="w-full h-9" alt="Logo" src={LogoImage}></img>
+    <div className="mt-1">
+      <img className="w-full h-8 md:h-10 rounded-md" alt="Logo" src={LogoImage}></img>
     </div>
   );
 };

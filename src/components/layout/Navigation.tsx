@@ -16,7 +16,7 @@ const Navigation = () => {
   }, [dispatch]);
 
   return (
-    <header className="bg-gray-200 w-full flex justify-between px-4 py-2 md:py-3 md:px-6">
+    <header className="bg-gray-200 w-full flex justify-between px-4 py-1 md:py-2 md:px-6">
       <UserProfile userName={userName} />
       <Link to="/products">
         <Logo />

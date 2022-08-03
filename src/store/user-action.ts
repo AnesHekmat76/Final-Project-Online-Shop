@@ -6,7 +6,7 @@ export const getUserDetails = (): any => {
     fetch('https://fakestoreapi.com/users/1')
       .then((res) => res.json())
       .then((data) => {
-        dispatch(userAction.getUserName(data.username));
+        dispatch(userAction.getUserName(data.name.firstname));
       })
       .catch((error) => {
         throw new Error(error);

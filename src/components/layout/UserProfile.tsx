@@ -4,7 +4,7 @@ const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
     <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms w-32">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-10 w-10 text-gray-400"
+        className="h-9 w-9 md:h-10 md:w-10 text-gray-400"
         viewBox="0 0 20 20"
         fill="currentColor">
         <path
@@ -13,7 +13,10 @@ const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
           clipRule="evenodd"
         />
       </svg>
-      <h4 className="ml-1 text-gray-900"> {userName ? `Hi, ${userName}` : ''}</h4>
+      <h4 className="text-sm sm:text-base md:text-lg ml-1 text-gray-900">
+        {' '}
+        {userName ? `Hi, ${userName}` : ''}
+      </h4>
     </div>
   );
 };
