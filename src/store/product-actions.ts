@@ -1,13 +1,5 @@
 import { AppDispatch } from './index';
 import { productAction } from './product-slice';
-// import { useSelector } from 'react-redux';
-// import { RootState } from './index';
-
-// export const storeToDos = (todoItems: Todo[]): any => {
-//   return () => {
-//     localStorage.setItem('toDos', JSON.stringify(todoItems));
-//   };
-// };
 
 export const getProducts = (): any => {
   return async (dispatch: AppDispatch) => {

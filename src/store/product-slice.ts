@@ -9,7 +9,7 @@ type ProductState = {
   selectedCategory: string;
   searchedText: string;
   fetchLoading: boolean;
-  productMessage: string;
+  productStatus: string;
 };
 
 const initialProductState: ProductState = {
@@ -20,7 +20,7 @@ const initialProductState: ProductState = {
   selectedCategory: '',
   searchedText: '',
   fetchLoading: true,
-  productMessage: 'Loading...'
+  productStatus: 'Loading...'
 };
 
 const productSlice = createSlice({
@@ -29,9 +29,9 @@ const productSlice = createSlice({
   reducers: {
     getFetchedProducts(state, action) {
       if (action.payload.length === 0) {
-        state.productMessage = 'No product found';
+        state.productStatus = 'No product found';
       }
-      state.productMessage = '';
+      state.productStatus = '';
       state.fetchedProducts = action.payload;
       state.filteredProductsByCategory = action.payload;
       state.filteredProductsBySearch = action.payload;
@@ -48,7 +48,7 @@ const productSlice = createSlice({
       state.fetchedCategories = uniqueCategories;
     },
     filterProductsByCategory(state, action) {
-      state.productMessage = '';
+      state.productStatus = '';
       if (state.searchedText !== '') state.searchedText = '';
       if (action.payload === 'all') {
         state.filteredProductsByCategory = state.fetchedProducts;
@@ -67,14 +67,14 @@ const productSlice = createSlice({
       state.searchedText = action.payload;
     },
     filterProductsBySearch(state, action) {
-      state.productMessage = '';
+      state.productStatus = '';
       state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
         return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
       });
-      if (state.filteredProductsBySearch.length === 0) state.productMessage = 'No product found';
+      if (state.filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
     },
     changeProductMessage(state, action) {
-      state.productMessage = action.payload;
+      state.productStatus = action.payload;
     }
   }
 });
