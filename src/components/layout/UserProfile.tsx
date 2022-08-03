@@ -1,6 +1,6 @@
 const UserProfile = () => {
   return (
-    <button className="flex items-center rounded-xl hover:opacity-70 transition-opacity transition-duration: 150ms">
+    <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-10 w-10 text-gray-400"
@@ -13,7 +13,7 @@ const UserProfile = () => {
         />
       </svg>
       <h4 className="ml-1 text-gray-900">Hi, Anes</h4>
-    </button>
+    </div>
   );
 };
 export default UserProfile;
