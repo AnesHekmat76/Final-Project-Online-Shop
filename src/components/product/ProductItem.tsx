@@ -1,9 +1,22 @@
 import Button from '../UI/Button';
 import './ProductItem.css';
 import Product from '../../models/product';
+import { cartAction } from '../../store/cart-slice';
+import { useDispatch } from 'react-redux';
 
 const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
-  const { title, description, price, image } = props.product;
+  const { id, title, description, price, image } = props.product;
+  const dispatch = useDispatch();
+  const addToCartEventHandler = () => {
+    const selectedProduct = {
+      id: id,
+      title: title,
+      description: description,
+      price: price,
+      quantity: 1
+    };
+    dispatch(cartAction.addToCart(selectedProduct));
+  };
   return (
     <div className="border rounded-md border-gray-200 shadow-md mb-4 w-full sm:w-46/100 sm:mx-2 md:mx-3 lg:w-3/10 xl:mx-5">
       <div className="p-2 h-64 flex justify-center items-center">
@@ -22,7 +35,7 @@ const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
         </p>
         <div className="mt-5 flex justify-between items-center">
           <p className="text-sm lg:text-md">{price} $</p>
-          <Button />
+          <Button onClick={addToCartEventHandler} />
         </div>
       </div>
     </div>

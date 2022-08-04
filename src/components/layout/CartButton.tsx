@@ -1,5 +1,12 @@
 import Avatar from '@mui/material/Avatar';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 const CartButton = () => {
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  let totalCartQuantity = 0;
+  cartItems.forEach((cartItem) => {
+    totalCartQuantity += cartItem.quantity;
+  });
   return (
     <div className="flex items-center justify-center ml-7 hover:opacity-60 transition-opacity transition-duration: 150ms">
       <h4 className="mr-1.5 text-sm sm:text-base md:text-lg inline-block">Cart</h4>
@@ -12,7 +19,7 @@ const CartButton = () => {
         }}
         alt="Remy Sharp"
         src="/broken-image.jpg">
-        2
+        {totalCartQuantity}
       </Avatar>
     </div>
   );
