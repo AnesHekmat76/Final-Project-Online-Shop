@@ -6,14 +6,14 @@ import { RootState } from '../../store';
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  const cartArr = cartItems.map((cartItem, index) => {
+  const cartItemsList = cartItems.map((cartItem, index) => {
     return <CartItem key={index} product={cartItem} number={index + 1} />;
   });
 
   return (
     <div className="mt-10 md:mt-14">
       <CartHeader />
-      {cartArr}
+      {cartItemsList}
       <CartFooter />
     </div>
   );

@@ -15,7 +15,7 @@ const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
       price: price,
       quantity: 1
     };
-    dispatch(cartAction.addToCart(selectedProduct));
+    dispatch(cartAction.addItem(selectedProduct));
   };
   return (
     <div className="border rounded-md border-gray-200 shadow-md mb-4 w-full sm:w-46/100 sm:mx-2 md:mx-3 lg:w-3/10 xl:mx-5">
