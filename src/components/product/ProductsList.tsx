@@ -9,6 +9,7 @@ const ProductsList: React.FC = () => {
   const dispatch = useDispatch();
   const productItems = useSelector((state: RootState) => state.product.filteredProductsBySearch);
   const productMessage = useSelector((state: RootState) => state.product.productStatus);
+
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);

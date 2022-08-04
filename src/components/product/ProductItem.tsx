@@ -4,11 +4,13 @@ import './ProductItem.css';
 import Product from '../../models/product';
 import { cartAction } from '../../store/cart-slice';
 import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
 
 const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
   const { id, title, description, price, image } = props.product;
   const dispatch = useDispatch();
-  const addToCartEventHandler = () => {
+
+  const addToCartEventHandler = useCallback(() => {
     const selectedProduct = {
       id: id,
       title: title,
@@ -17,7 +19,7 @@ const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
       quantity: 1
     };
     dispatch(cartAction.addItem(selectedProduct));
-  };
+  }, [id, title, description, price, dispatch]);
   return (
     <div className="border rounded-md border-gray-200 shadow-md mb-4 w-full sm:w-46/100 sm:mx-2 md:mx-3 lg:w-3/10 xl:mx-5">
       <div className="p-2 h-64 flex justify-center items-center">

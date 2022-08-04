@@ -10,6 +10,7 @@ type ProductState = {
   searchedText: string;
   fetchLoading: boolean;
   productStatus: string;
+  filteredProducts: Product[];
 };
 
 const initialProductState: ProductState = {
@@ -20,7 +21,8 @@ const initialProductState: ProductState = {
   selectedCategory: '',
   searchedText: '',
   fetchLoading: true,
-  productStatus: 'Loading...'
+  productStatus: 'Loading...',
+  filteredProducts: []
 };
 
 const productSlice = createSlice({
@@ -47,6 +49,10 @@ const productSlice = createSlice({
       });
       state.fetchedCategories = uniqueCategories;
     },
+    clearProductList(state) {
+      state.filteredProductsBySearch = [];
+      state.productStatus = 'Loading...';
+    },
     filterProductsByCategory(state, action) {
       state.productStatus = '';
       if (state.searchedText !== '') state.searchedText = '';
@@ -62,9 +68,25 @@ const productSlice = createSlice({
       );
       state.filteredProductsByCategory = filteredProducts;
       state.filteredProductsBySearch = filteredProducts;
+      /////
+      // if (action.payload === 'all') {
+      //   state.filteredProducts = state.fetchedProducts;
+      //   state.selectedCategory = action.payload;
+      //   return;
+      // }
+      // state.selectedCategory = action.payload;
+      // const filteredProductsByCat = state.fetchedProducts.filter(
+      //   (product) => product.category === action.payload
+      // );
     },
     userSearch(state, action) {
       state.searchedText = action.payload;
+    },
+    emptySearchBar(state) {
+      state.searchedText = '';
+    },
+    emptyDropDown(state) {
+      state.selectedCategory = '';
     },
     filterProductsBySearch(state, action) {
       state.productStatus = '';
@@ -75,6 +97,9 @@ const productSlice = createSlice({
     },
     changeProductMessage(state, action) {
       state.productStatus = action.payload;
+    },
+    backToInitialState(state) {
+      return initialProductState;
     }
   }
 });

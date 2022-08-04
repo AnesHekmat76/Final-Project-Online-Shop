@@ -8,10 +8,12 @@ import { useDispatch } from 'react-redux';
 const DropDown = () => {
   const dispatch = useDispatch();
   const dropDownValue = useSelector((state: RootState) => state.product.selectedCategory);
+  const fetchedCategories = useSelector((state: RootState) => state.product.fetchedCategories);
+
   const dropDownChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(productAction.filterProductsByCategory(event.target.value));
   };
-  const fetchedCategories = useSelector((state: RootState) => state.product.fetchedCategories);
+
   const categoryOption = fetchedCategories.map((category, index) => {
     const categoryInnerText = category.charAt(0).toUpperCase() + category.slice(1);
     return (
@@ -20,6 +22,7 @@ const DropDown = () => {
       </option>
     );
   });
+
   return (
     <div className="mt-6 sm:w-46/100 sm:ml-3 sm:mt-0 lg:ml-4">
       <select

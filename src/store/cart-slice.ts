@@ -44,9 +44,12 @@ const cartSlice = createSlice({
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
     getStoredCartItems(state) {
-      const storedCartItems = JSON.parse(localStorage.getItem('cartItems') || '');
-      if (storedCartItems.length > 0) {
-        state.cartItems = storedCartItems;
+      const storedCartItems = localStorage.getItem('cartItems');
+      if (storedCartItems !== null) {
+        const cartItems = JSON.parse(storedCartItems);
+        if (cartItems.length > 0) {
+          state.cartItems = cartItems;
+        }
       }
     }
   }
