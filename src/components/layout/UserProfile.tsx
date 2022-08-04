@@ -20,4 +20,4 @@ const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
     </div>
   );
 };
-export default UserProfile;
+export default React.memo(UserProfile);

@@ -22,6 +22,7 @@ const cartSlice = createSlice({
       } else {
         state.cartItems[selectedProductIndex].quantity++;
       }
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
     removeItem(state, action) {
       const selectedProductIndex = state.cartItems.findIndex((cartItem) => {
@@ -33,15 +34,20 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.splice(selectedProductIndex, 1);
       }
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
     deleteItems(state, action) {
       const selectedProductIndex = state.cartItems.findIndex((cartItem) => {
         return cartItem.id === action.payload;
       });
       state.cartItems.splice(selectedProductIndex, 1);
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
-    getStoredCartItems(state, action) {
-      state.cartItems = action.payload;
+    getStoredCartItems(state) {
+      const storedCartItems = JSON.parse(localStorage.getItem('cartItems') || '');
+      if (storedCartItems.length > 0) {
+        state.cartItems = storedCartItems;
+      }
     }
   }
 });

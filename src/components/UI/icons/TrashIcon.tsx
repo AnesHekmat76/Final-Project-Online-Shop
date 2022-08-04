@@ -1,4 +1,5 @@
-const TrashIcon2: React.FC<{ className: string }> = ({ className }) => {
+import React from 'react';
+const TrashIcon: React.FC<{ className: string }> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,4 +15,4 @@ const TrashIcon2: React.FC<{ className: string }> = ({ className }) => {
     </svg>
   );
 };
-export default TrashIcon2;
+export default React.memo(TrashIcon);

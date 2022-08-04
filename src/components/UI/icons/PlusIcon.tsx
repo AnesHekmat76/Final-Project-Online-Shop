@@ -1,3 +1,4 @@
+import React from 'react';
 const PlusIcon: React.FC<{ className: string }> = ({ className }) => {
   return (
     <svg
@@ -13,4 +14,4 @@ const PlusIcon: React.FC<{ className: string }> = ({ className }) => {
     </svg>
   );
 };
-export default PlusIcon;
+export default React.memo(PlusIcon);

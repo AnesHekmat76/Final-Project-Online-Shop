@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import React from 'react';
 const CartFooter = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   let cartTotalPrice = 0;

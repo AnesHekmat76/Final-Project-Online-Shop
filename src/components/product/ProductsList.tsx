@@ -1,9 +1,7 @@
-// import productImg from '../../assets/product.jpg';
 import ProductItem from './ProductItem';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-// import { productAction } from '../../store/product-slice';
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../../store/product-actions';
 
@@ -11,7 +9,6 @@ const ProductsList: React.FC = () => {
   const dispatch = useDispatch();
   const productItems = useSelector((state: RootState) => state.product.filteredProductsBySearch);
   const productMessage = useSelector((state: RootState) => state.product.productStatus);
-
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);

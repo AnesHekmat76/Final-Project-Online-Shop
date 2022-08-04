@@ -10,7 +10,6 @@ import { getUserDetails } from '../../store/user-action';
 const Navigation = () => {
   const dispatch = useDispatch();
   const userName = useSelector((state: RootState) => state.user.userName);
-
   useEffect(() => {
     dispatch(getUserDetails());
   }, [dispatch]);

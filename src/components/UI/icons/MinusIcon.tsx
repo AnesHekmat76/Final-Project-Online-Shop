@@ -1,3 +1,4 @@
+import React from 'react';
 const MinusIcon: React.FC<{ className: string }> = ({ className }) => {
   return (
     <svg
@@ -13,4 +14,4 @@ const MinusIcon: React.FC<{ className: string }> = ({ className }) => {
     </svg>
   );
 };
-export default MinusIcon;
+export default React.memo(MinusIcon);

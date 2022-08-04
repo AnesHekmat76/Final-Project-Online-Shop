@@ -1,3 +1,4 @@
+import React from 'react';
 import Button from '../UI/Button';
 import './ProductItem.css';
 import Product from '../../models/product';
@@ -41,4 +42,4 @@ const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
     </div>
   );
 };
-export default ProductItem;
+export default React.memo(ProductItem);

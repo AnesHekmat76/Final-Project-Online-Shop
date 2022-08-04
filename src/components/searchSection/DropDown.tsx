@@ -32,4 +32,4 @@ const DropDown = () => {
     </div>
   );
 };
-export default DropDown;
+export default React.memo(DropDown);

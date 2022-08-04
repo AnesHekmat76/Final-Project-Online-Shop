@@ -1,6 +1,7 @@
 import Avatar from '@mui/material/Avatar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import React from 'react';
 const CartButton = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   let totalCartQuantity = 0;
@@ -24,4 +25,4 @@ const CartButton = () => {
     </div>
   );
 };
-export default CartButton;
+export default React.memo(CartButton);

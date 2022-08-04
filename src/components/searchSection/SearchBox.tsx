@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { productAction } from '../../store/product-slice';
 import { useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import { RootState } from '../../store';
 import { useEffect } from 'react';
 
 let isInitial = true;
+
 const SearchBox = () => {
   const dispatch = useDispatch();
   const searchInputValue = useSelector((state: RootState) => state.product.searchedText);
@@ -58,4 +60,4 @@ const SearchBox = () => {
     </div>
   );
 };
-export default SearchBox;
+export default React.memo(SearchBox);

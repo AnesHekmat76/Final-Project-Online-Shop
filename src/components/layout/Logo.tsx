@@ -1,4 +1,5 @@
 import LogoImage from '../../assets/Logo.png';
+import React from 'react';
 const Logo = () => {
   return (
     <div className="mt-1">
@@ -6,4 +7,4 @@ const Logo = () => {
     </div>
   );
 };
-export default Logo;
+export default React.memo(Logo);

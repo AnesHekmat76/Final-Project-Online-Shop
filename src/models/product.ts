@@ -11,5 +11,4 @@ type Product = {
   };
 };
 
-// export default Todo;
 export default Product;
