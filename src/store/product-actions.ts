@@ -8,7 +8,6 @@ export const getProducts = (): any => {
       if (response.status > 399) {
         throw new Error('Some thing went wrong');
       }
-      dispatch(productAction.changeProductMessage);
       const data = await response.json();
       dispatch(productAction.setFetchedProducts(data));
     } catch (error) {

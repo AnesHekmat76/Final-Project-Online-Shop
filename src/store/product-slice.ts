@@ -26,6 +26,7 @@ const productSlice = createSlice({
     setFetchedProducts(state, action) {
       if (action.payload.length === 0) {
         state.productStatus = 'No product found';
+        return;
       }
       state.productStatus = '';
       state.fetchedProducts = action.payload;
@@ -90,6 +91,7 @@ const productSlice = createSlice({
     },
 
     changeProductMessage(state, action) {
+      console.log('mesage');
       state.productStatus = action.payload;
     },
     backToInitialState() {
