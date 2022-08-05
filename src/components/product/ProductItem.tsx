@@ -12,10 +12,10 @@ const ProductItem: React.FC<{ product: Product; key: number }> = (props) => {
 
   const addToCartEventHandler = useCallback(() => {
     const selectedProduct = {
-      id: id,
-      title: title,
-      description: description,
-      price: price,
+      id,
+      title,
+      description,
+      price,
       quantity: 1
     };
     dispatch(cartAction.addItem(selectedProduct));

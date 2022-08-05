@@ -15,7 +15,8 @@ module.exports = {
         'btn-blue': '#2c6dc1',
         'nav-gray': '#e0e0e0',
         'cart-red': '#e25141',
-        'plus-icon-blue': '#116cc7'
+        'plus-icon-blue': '#116cc7',
+        'cart-header-gray': '#9e9e9e'
       },
       spacing: {
         '1/2': '50%',

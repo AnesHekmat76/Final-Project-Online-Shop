@@ -11,7 +11,7 @@ const SearchBox = () => {
   const dispatch = useDispatch();
   const searchInputValue = useSelector((state: RootState) => state.product.searchedText);
   const inputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(productAction.setUserSearch(event.target.value));
+    dispatch(productAction.setSearchInputValue(event.target.value));
   };
 
   useEffect(() => {

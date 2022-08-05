@@ -66,7 +66,7 @@ const productSlice = createSlice({
       state.filteredProducts = filteredProductsBySearch;
       if (filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
     },
-    setUserSearch(state, action) {
+    setSearchInputValue(state, action) {
       state.searchedText = action.payload;
     },
     filterProductsBySearch(state, action) {
