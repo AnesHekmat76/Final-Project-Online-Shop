@@ -4,11 +4,8 @@ import Product from '../models/product';
 type ProductState = {
   fetchedProducts: Product[];
   fetchedCategories: string[];
-  filteredProductsByCategory: Product[];
-  filteredProductsBySearch: Product[];
   selectedCategory: string;
   searchedText: string;
-  fetchLoading: boolean;
   productStatus: string;
   filteredProducts: Product[];
 };
@@ -16,11 +13,8 @@ type ProductState = {
 const initialProductState: ProductState = {
   fetchedProducts: [],
   fetchedCategories: [],
-  filteredProductsByCategory: [],
-  filteredProductsBySearch: [],
   selectedCategory: 'all',
   searchedText: '',
-  fetchLoading: true,
   productStatus: 'Loading...',
   filteredProducts: []
 };
@@ -29,14 +23,12 @@ const productSlice = createSlice({
   name: 'product',
   initialState: initialProductState,
   reducers: {
-    getFetchedProducts(state, action) {
+    setFetchedProducts(state, action) {
       if (action.payload.length === 0) {
         state.productStatus = 'No product found';
       }
       state.productStatus = '';
       state.fetchedProducts = action.payload;
-      state.filteredProductsByCategory = action.payload;
-      state.filteredProductsBySearch = action.payload;
       state.filteredProducts = action.payload;
       //create an array of unique categories:
       const productCategories: string[] = action.payload.map((product: Product) => {
@@ -49,10 +41,6 @@ const productSlice = createSlice({
         }
       });
       state.fetchedCategories = uniqueCategories;
-    },
-    clearProductList(state) {
-      state.filteredProductsBySearch = [];
-      state.productStatus = 'Loading...';
     },
     filterProductsByCategory(state, action) {
       //filter by cat:
@@ -76,19 +64,8 @@ const productSlice = createSlice({
       });
       state.filteredProducts = filteredProductsBySearch;
       if (filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
-      /////////
-      state.productStatus = '';
-      state.selectedCategory = action.payload;
-      if (action.payload === 'all') {
-        state.filteredProducts = state.fetchedProducts;
-      } else {
-        const filteredProductsByCategory = state.fetchedProducts.filter(
-          (product) => product.category === action.payload
-        );
-        state.filteredProducts = filteredProductsByCategory;
-      }
     },
-    userSearch(state, action) {
+    setUserSearch(state, action) {
       state.searchedText = action.payload;
     },
     filterProductsBySearch(state, action) {

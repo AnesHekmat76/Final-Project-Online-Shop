@@ -7,15 +7,15 @@ import { getProducts } from '../../store/product-actions';
 
 const ProductsList: React.FC = () => {
   const dispatch = useDispatch();
-  const productItems = useSelector((state: RootState) => state.product.filteredProductsBySearch);
+
   const productMessage = useSelector((state: RootState) => state.product.productStatus);
-  const fileterd = useSelector((state: RootState) => state.product.filteredProducts);
+  const productItems = useSelector((state: RootState) => state.product.filteredProducts);
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const products = fileterd.map((product) => {
+  const products = productItems.map((product) => {
     return <ProductItem key={product.id} product={product} />;
   });
 

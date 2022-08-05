@@ -10,7 +10,7 @@ export const getProducts = (): any => {
       }
       dispatch(productAction.changeProductMessage);
       const data = await response.json();
-      dispatch(productAction.getFetchedProducts(data));
+      dispatch(productAction.setFetchedProducts(data));
     } catch (error) {
       let message = 'Unknown Error';
       if (error instanceof Error) message = error.message;

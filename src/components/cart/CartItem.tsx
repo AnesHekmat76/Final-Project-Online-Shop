@@ -42,7 +42,7 @@ const CartItem: React.FC<{ product: cartItem; number: number }> = ({ product, nu
         <button onClick={minusButtonClick}>
           <MinusIcon className="text-cart-red hover:opacity-80 transition" />
         </button>
-        <p className="text-center mx-2 md:mx-3">{product.quantity}</p>
+        <p className="text-center mx-2 md:mx-3 w-4">{product.quantity}</p>
         <button onClick={plusButtonClick}>
           <PlusIcon className="text-plus-icon-blue hover:opacity-80 transition" />
         </button>
