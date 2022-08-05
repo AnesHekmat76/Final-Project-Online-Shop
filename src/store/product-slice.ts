@@ -78,6 +78,8 @@ const productSlice = createSlice({
       // const filteredProductsByCat = state.fetchedProducts.filter(
       //   (product) => product.category === action.payload
       // );
+
+      // Idea : get a copy of fetched product array, at first filter based on category, then if searched text was not empty go on ...
     },
     userSearch(state, action) {
       state.searchedText = action.payload;
