@@ -16,7 +16,7 @@ const CartButton = () => {
   }, [cartItems]);
 
   return (
-    <div className="flex items-center justify-center ml-7 hover:opacity-60 transition-opacity transition-duration: 150ms">
+    <div className="flex items-center justify-center ml-12 hover:opacity-60 transition-opacity transition-duration: 150ms">
       <h4 className="mr-1.5 text-sm sm:text-base md:text-lg inline-block">Cart</h4>
       <Avatar
         sx={{
