@@ -18,7 +18,7 @@ const initialProductState: ProductState = {
   fetchedCategories: [],
   filteredProductsByCategory: [],
   filteredProductsBySearch: [],
-  selectedCategory: '',
+  selectedCategory: 'all',
   searchedText: '',
   fetchLoading: true,
   productStatus: 'Loading...',
@@ -37,6 +37,7 @@ const productSlice = createSlice({
       state.fetchedProducts = action.payload;
       state.filteredProductsByCategory = action.payload;
       state.filteredProductsBySearch = action.payload;
+      state.filteredProducts = action.payload;
       //create an array of unique categories:
       const productCategories: string[] = action.payload.map((product: Product) => {
         return product.category;
@@ -54,53 +55,67 @@ const productSlice = createSlice({
       state.productStatus = 'Loading...';
     },
     filterProductsByCategory(state, action) {
+      //filter by cat:
       state.productStatus = '';
-      if (state.searchedText !== '') state.searchedText = '';
+      state.selectedCategory = action.payload;
       if (action.payload === 'all') {
-        state.filteredProductsByCategory = state.fetchedProducts;
-        state.filteredProductsBySearch = state.fetchedProducts;
-        state.selectedCategory = action.payload;
+        state.filteredProducts = state.fetchedProducts;
+      } else {
+        const filteredProductsByCategory = state.fetchedProducts.filter(
+          (product) => product.category === action.payload
+        );
+        state.filteredProducts = filteredProductsByCategory;
+      }
+
+      if (state.searchedText.trim() === '') {
         return;
       }
+      //filter by search:
+      const filteredProductsBySearch = state.filteredProducts.filter((product) => {
+        return product.title.toLowerCase().includes(state.searchedText.trim().toLowerCase());
+      });
+      state.filteredProducts = filteredProductsBySearch;
+      if (filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
+      /////////
+      state.productStatus = '';
       state.selectedCategory = action.payload;
-      const filteredProducts = state.fetchedProducts.filter(
-        (product) => product.category === action.payload
-      );
-      state.filteredProductsByCategory = filteredProducts;
-      state.filteredProductsBySearch = filteredProducts;
-      /////
-      // if (action.payload === 'all') {
-      //   state.filteredProducts = state.fetchedProducts;
-      //   state.selectedCategory = action.payload;
-      //   return;
-      // }
-      // state.selectedCategory = action.payload;
-      // const filteredProductsByCat = state.fetchedProducts.filter(
-      //   (product) => product.category === action.payload
-      // );
-
-      // Idea : get a copy of fetched product array, at first filter based on category, then if searched text was not empty go on ...
+      if (action.payload === 'all') {
+        state.filteredProducts = state.fetchedProducts;
+      } else {
+        const filteredProductsByCategory = state.fetchedProducts.filter(
+          (product) => product.category === action.payload
+        );
+        state.filteredProducts = filteredProductsByCategory;
+      }
     },
     userSearch(state, action) {
       state.searchedText = action.payload;
     },
-    emptySearchBar(state) {
-      state.searchedText = '';
-    },
-    emptyDropDown(state) {
-      state.selectedCategory = '';
-    },
     filterProductsBySearch(state, action) {
       state.productStatus = '';
-      state.filteredProductsBySearch = state.filteredProductsByCategory.filter((product) => {
-        return product.title.toLowerCase().includes(action.payload.trim().toLowerCase());
+      if (state.selectedCategory === 'all') {
+        state.filteredProducts = state.fetchedProducts;
+      } else {
+        const filteredProductsByCategory = state.fetchedProducts.filter(
+          (product) => product.category === state.selectedCategory
+        );
+        state.filteredProducts = filteredProductsByCategory;
+      }
+
+      if (state.searchedText.trim() === '') {
+        return;
+      }
+      const filteredProductsBySearch = state.filteredProducts.filter((product) => {
+        return product.title.toLowerCase().includes(state.searchedText.trim().toLowerCase());
       });
-      if (state.filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
+      state.filteredProducts = filteredProductsBySearch;
+      if (filteredProductsBySearch.length === 0) state.productStatus = 'No product found';
     },
+
     changeProductMessage(state, action) {
       state.productStatus = action.payload;
     },
-    backToInitialState(state) {
+    backToInitialState() {
       return initialProductState;
     }
   }

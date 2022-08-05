@@ -29,6 +29,13 @@ const SearchBox = () => {
     };
   }, [searchInputValue, dispatch]);
 
+  useEffect(() => {
+    return () => {
+      console.log('unmount');
+      isInitial = true;
+    };
+  }, []);
+
   return (
     <div className="flex items-center sm:w-46/100 sm:mr-3 lg:mr-4">
       <label htmlFor="simple-search" className="sr-only">
