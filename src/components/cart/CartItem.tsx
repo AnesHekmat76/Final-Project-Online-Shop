@@ -1,7 +1,7 @@
 import MinusIcon from '../UI/icons/MinusIcon';
 import PlusIcon from '../UI/icons/PlusIcon';
 import TrashIcon from '../UI/icons/TrashIcon';
-import cartItem from '../../models/cartItem';
+import cartItem from '../../types/cartItem';
 import './cartItem.css';
 import { cartAction } from '../../store/cart-slice';
 import { useDispatch } from 'react-redux';

@@ -8,8 +8,8 @@ export const getUserDetails = (): any => {
       .then((data) => {
         dispatch(userAction.getUserName(data.name.firstname));
       })
-      .catch((error) => {
-        throw new Error(error);
+      .catch(() => {
+        throw new Error('Failed to fetch user details');
       });
   };
 };

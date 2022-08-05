@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Product from '../models/product';
+import Product from '../types/product';
 
 type ProductState = {
   fetchedProducts: Product[];
@@ -91,7 +91,6 @@ const productSlice = createSlice({
     },
 
     changeProductMessage(state, action) {
-      console.log('mesage');
       state.productStatus = action.payload;
     },
     backToInitialState() {

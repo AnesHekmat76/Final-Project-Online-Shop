@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import cartItem from '../models/cartItem';
+import cartItem from '../types/cartItem';
 
 type cartState = {
   cartItems: cartItem[];

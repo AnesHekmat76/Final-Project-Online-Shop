@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../UI/Button';
 import './ProductItem.css';
-import Product from '../../models/product';
+import Product from '../../types/product';
 import { cartAction } from '../../store/cart-slice';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
