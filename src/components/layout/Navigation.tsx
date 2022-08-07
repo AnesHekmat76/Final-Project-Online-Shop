@@ -17,7 +17,7 @@ const Navigation = () => {
   return (
     <header className="bg-gray-200 w-full flex justify-between px-4 py-1 md:py-2 md:px-6 sticky top-0 z-10 shadow-md">
       <UserProfile userName={userName} />
-      <Link to="/products">
+      <Link className="flex items-center" to="/products">
         <Logo />
       </Link>
       <Link className="flex" to="./cart">

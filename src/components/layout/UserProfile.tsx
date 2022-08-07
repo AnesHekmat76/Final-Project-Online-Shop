@@ -1,7 +1,14 @@
 import React from 'react';
 const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
+  if (userName) {
+    userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+    if (userName.length > 7) {
+      userName = userName.substring(0, 7) + '..';
+    }
+  }
+
   return (
-    <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms w-32">
+    <div className="cursor-default flex items-center rounded-xl transition-opacity transition-duration: 150ms w-34 sm:w-36 md:w-38">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-9 w-9 md:h-10 md:w-10 text-gray-400"
@@ -13,7 +20,7 @@ const UserProfile: React.FC<{ userName: string | null }> = ({ userName }) => {
           clipRule="evenodd"
         />
       </svg>
-      <h4 className="text-sm sm:text-base md:text-lg ml-1 text-gray-900">
+      <h4 className="text-sm sm:text-base ml-0 sm:ml-1 text-gray-900">
         {' '}
         {userName ? `Hi, ${userName}` : ''}
       </h4>
